@@ -48,7 +48,7 @@ int main(){
         printf("\n");
 
         if(posHJ > 2 || posHJ < 0 || posVJ > 2 || posVJ < 0){
-            printf("Digite uma posição entre 0 e 2!")
+            printf("Digite uma posição entre 0 e 2!");
             continue;
         }
 
@@ -93,7 +93,7 @@ int main(){
                 if(tabuleiro[l][l] == 'O'){
                     countMDP++;
                     if(countMDP == 3){
-                        printf("Você perdeu!\n");
+                        printf("Você perdeu! Uma derrota pela diagonal principal.\n");
                         andamento = 0;
                     }
                 }
@@ -116,7 +116,7 @@ int main(){
                     if(tabuleiro[l][c] == 'O'){
                         countMDS++;
                         if(countMDS == 3){
-                            printf("Você perdeu!\n");
+                            printf("Você perdeu! Uma derrota pela diagonal secundaria.\n");
                             andamento = 0;
                         }
                     }
@@ -126,9 +126,15 @@ int main(){
         //checa as condições de vitoria pela horizontal
         for(int l = 0; l < linha; l++){
             for(int c = 0; c < coluna; c++){
-                if(c == 0){
+                if(c == 0 && tabuleiro[l][c] == 'X'){
                     if(tabuleiro[l][c+1] == 'X' && tabuleiro[l][c+2] == 'X'){
                         printf("Você ganhou! Uma vitoria pela horizontal. \n");
+                        andamento = 0;
+                    }
+                }
+                else if (c == 0 && tabuleiro[l][c] == 'O'){
+                    if(tabuleiro[l][c+1] == 'O' && tabuleiro[l][c+2] == 'O'){
+                        printf("Você perdeu! Uma derrota pela horizontal. \n");
                         andamento = 0;
                     }
                 }
@@ -137,10 +143,16 @@ int main(){
         //checa as condições de vitoria pela vertical
         for(int c = 0; c < coluna; c++){
             for(int l = 0; l < linha;l++){
-                if(l == 0){
-                    if(tabuleiro[l+1][c] == 'X' && tabuleiro[l+2][c] == 'X'){ //TODO, adequar para as condições verticais
+                if(l == 0 && tabuleiro[l][c] == 'X'){
+                    if(tabuleiro[l+1][c] == 'X' && tabuleiro[l+2][c] == 'X'){ //TODO, fazer a parte da derrota
                         printf("Você ganhou! Uma vitoria pela vertical. \n");
                         andamento = 0;
+                    }
+                }
+                else if(l == 0 && tabuleiro[l][c] == 'O'){
+                    if(tabuleiro[l+1][c] == 'O' && tabuleiro[l+2][c] == 'O'){
+                    printf("Você perdeu! Uma derrota pela vertical. \n");
+                    andamento = 0;
                     }
                 }
             }
