@@ -47,6 +47,11 @@ int main(){
         scanf("%d", &posVJ);
         printf("\n");
 
+        if(posHJ > 2 || posHJ < 0 || posVJ > 2 || posVJ < 0){
+            printf("Digite uma posição entre 0 e 2!")
+            continue;
+        }
+
         //registra jogada jogador
         if(tabuleiro[posHJ][posVJ] == '_'){
             tabuleiro[posHJ][posVJ] = 'X';
